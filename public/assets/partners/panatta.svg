@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100">
+  <defs>
+    <style>
+      .cls-1 { fill: #d60000; }
+      .cls-2 { fill: #fff; font-family: Arial, sans-serif; font-weight: bold; }
+    </style>
+  </defs>
+  <ellipse class="cls-1" cx="150" cy="50" rx="140" ry="40"/>
+  <text class="cls-2" x="150" y="65" text-anchor="middle" font-size="40">PANATTA</text>
+  <text class="cls-2" x="150" y="85" text-anchor="middle" font-size="12" letter-spacing="5">SPORT</text>
+</svg>
