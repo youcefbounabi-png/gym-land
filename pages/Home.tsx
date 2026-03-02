@@ -69,7 +69,7 @@ const Home: React.FC = () => {
             poster="/hero_video_poster.png"
             className="w-full h-full object-cover grayscale brightness-[0.4]"
           >
-            <source src="/hero.mp4" type="video/mp4" />
+            <source src="/hero_optimized.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-tr from-black via-black/40 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#ffce00]/[0.02] to-black/80"></div>
