@@ -65,6 +65,8 @@ const Home: React.FC = () => {
             loop
             muted
             playsInline
+            preload="auto"
+            poster="/hero_video_poster.png"
             className="w-full h-full object-cover grayscale brightness-[0.4]"
           >
             <source src="/hero.mp4" type="video/mp4" />
