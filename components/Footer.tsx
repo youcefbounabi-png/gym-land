@@ -1,9 +1,22 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LOGO_URL, NAV_ITEMS } from '../constants';
+import { LOGO_URL } from '../constants';
+import { useLanguage } from '../LanguageContext';
+
+const NAV_KEYS = [
+  { key: 'nav_home', path: '/' },
+  { key: 'nav_about', path: '/about' },
+  { key: 'nav_services', path: '/services' },
+  { key: 'nav_membership', path: '/membership' },
+  { key: 'nav_trainers', path: '/trainers' },
+  { key: 'nav_transformations', path: '/transformations' },
+  { key: 'nav_contact', path: '/contact' },
+] as const;
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-[#050505] pt-32 pb-12 border-t border-white/5">
       <div className="container mx-auto px-6">
@@ -12,7 +25,7 @@ const Footer: React.FC = () => {
           <div className="space-y-8">
             <img src={LOGO_URL} alt="Gymland" className="h-14 md:h-20" />
             <p className="text-gray-500 text-sm leading-relaxed max-w-xs font-light">
-              Empowering athletes since inception. 1,600m² of pure performance in the heart of Algiers. Join the monarch of fitness.
+              {t('footer_desc')}
             </p>
             <div className="flex space-x-5">
               {[
@@ -29,12 +42,12 @@ const Footer: React.FC = () => {
 
           {/* Nav */}
           <div>
-            <h4 className="text-[#ffce00] font-black mb-10 tracking-[0.3em] uppercase text-[10px]">Explore</h4>
+            <h4 className="text-[#ffce00] font-black mb-10 tracking-[0.3em] uppercase text-[10px]">{t('footer_explore')}</h4>
             <ul className="space-y-5">
-              {NAV_ITEMS.map(item => (
+              {NAV_KEYS.map(item => (
                 <li key={item.path}>
                   <Link to={item.path} className="text-gray-500 hover:text-white transition-colors text-sm font-bold uppercase tracking-tighter">
-                    {item.label}
+                    {t(item.key)}
                   </Link>
                 </li>
               ))}
@@ -43,7 +56,7 @@ const Footer: React.FC = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="text-[#ffce00] font-black mb-10 tracking-[0.3em] uppercase text-[10px]">Headquarters</h4>
+            <h4 className="text-[#ffce00] font-black mb-10 tracking-[0.3em] uppercase text-[10px]">{t('footer_hq')}</h4>
             <ul className="space-y-6 text-gray-500 text-sm font-light">
               <li className="flex items-start space-x-4">
                 <i className="fas fa-map-marker-alt text-[#ffce00] mt-1"></i>
@@ -51,7 +64,7 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center space-x-4">
                 <i className="fas fa-phone text-[#ffce00]"></i>
-                <span>+213 (0) 554 628 266</span>
+                <a href="https://wa.me/213554628266" className="hover:text-[#ffce00] transition-colors">+213 (0) 554 62 82 66</a>
               </li>
               <li className="flex items-center space-x-4">
                 <i className="fas fa-envelope text-[#ffce00]"></i>
@@ -62,12 +75,12 @@ const Footer: React.FC = () => {
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-[#ffce00] font-black mb-10 tracking-[0.3em] uppercase text-[10px]">Stay Dangerous</h4>
-            <p className="text-gray-500 text-sm mb-8 font-light leading-relaxed">Get training protocols and exclusive membership access updates.</p>
+            <h4 className="text-[#ffce00] font-black mb-10 tracking-[0.3em] uppercase text-[10px]">{t('footer_newsletter_title')}</h4>
+            <p className="text-gray-500 text-sm mb-8 font-light leading-relaxed">{t('footer_newsletter_desc')}</p>
             <div className="relative group">
-              <input 
-                type="email" 
-                placeholder="EMAIL ADDRESS" 
+              <input
+                type="email"
+                placeholder="EMAIL"
                 className="w-full bg-white/[0.03] border border-white/10 rounded-2xl py-5 px-8 text-xs font-bold tracking-widest focus:outline-none focus:border-[#ffce00] transition-all"
               />
               <button className="absolute right-2 top-2 bg-[#ffce00] text-black w-12 h-12 rounded-xl flex items-center justify-center hover:scale-105 transition-all shadow-lg shadow-[#ffce00]/10">
@@ -78,10 +91,10 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[9px] text-gray-600 uppercase tracking-[0.3em] font-black">
-          <p>© 2026 THE GYMLAND. ALL RIGHTS RESERVED.</p>
+          <p>{t('footer_copyright')}</p>
           <div className="flex space-x-10 mt-6 md:mt-0">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Use</a>
+            <a href="#" className="hover:text-white transition-colors">{t('footer_privacy')}</a>
+            <a href="#" className="hover:text-white transition-colors">{t('footer_terms')}</a>
             <a href="https://web-rocket.dz/" className="text-[#ffce00]/60 hover:text-[#ffce00] transition-colors">By Web Rocket</a>
           </div>
         </div>

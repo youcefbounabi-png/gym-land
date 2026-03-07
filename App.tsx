@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
+// Language Provider
+import { LanguageProvider } from './LanguageContext';
+
 // Layout Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -78,22 +81,24 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen relative">
-        <Particles
-          className="fixed inset-0 z-0"
-          quantity={150}
-          ease={80}
-          color="#ffce00"
-          refresh
-        />
-        <Navbar />
-        <main className="flex-grow">
-          <AnimatedRoutes />
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <div className="flex flex-col min-h-screen relative">
+          <Particles
+            className="fixed inset-0 z-0"
+            quantity={150}
+            ease={80}
+            color="#ffce00"
+            refresh
+          />
+          <Navbar />
+          <main className="flex-grow">
+            <AnimatedRoutes />
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </LanguageProvider>
   );
 };
 

@@ -1,16 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { TRAINERS } from '../constants';
+import { useLanguage } from '../LanguageContext';
 
 const Trainers: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="pt-32 pb-16 overflow-hidden">
       <section className="p-0 mt-16 sm:mt-24">
         <div className="app-container">
           <div className="text-center mb-20 sm:mb-32 px-4">
-            <h3 className="text-[#ffce00] font-black tracking-[0.5em] text-[10px] uppercase mb-8">The Elite</h3>
-            <h1 className="hero-heading font-black italic tracking-tighter mb-10 leading-none uppercase text-white">THE <br /> <span className="gold-gradient-text">COMMANDERS.</span></h1>
-            <p className="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl font-light">Our commanders are masters of their craft, dedicated to your psychological and physiological evolution.</p>
+            <h3 className="text-[#ffce00] font-black tracking-[0.5em] text-[10px] uppercase mb-8">{t('trainers_badge')}</h3>
+            <h1 className="hero-heading font-black italic tracking-tighter mb-10 leading-none uppercase text-white">{t('trainers_title_1')} <br /> <span className="gold-gradient-text">{t('trainers_title_2')}</span></h1>
+            <p className="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl font-light">{t('trainers_desc')}</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
@@ -23,13 +26,13 @@ const Trainers: React.FC = () => {
                 className="group h-full flex flex-col"
               >
                 <div className="relative overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] mb-8 sm:mb-10 aspect-[3/4] sm:h-[600px] border border-white/5">
-                  <img 
-                    src={trainer.image} 
-                    alt={trainer.name} 
-                    className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-[1200ms] ease-out group-hover:scale-105" 
+                  <img
+                    src={trainer.image}
+                    alt={trainer.name}
+                    className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-[1200ms] ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-700"></div>
-                  
+
                   {/* Social Overlay */}
                   <div className="absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 flex space-x-4 sm:space-x-5 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
                     <a href="#" className="bg-white text-black w-10 h-10 sm:w-12 sm:h-12 rounded-[1rem] sm:rounded-2xl flex items-center justify-center hover:bg-[#ffce00] transition-all">

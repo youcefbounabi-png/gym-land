@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useInView, useSpring, useMotionValue, 
 import { Link } from 'react-router-dom';
 import { SERVICES_DATA, EQUIPMENT_PARTNERS, LOGO_V2_URL } from '../constants';
 import { ShadowOverlay } from '../components/ui/ShadowOverlay';
+import { useLanguage } from '../LanguageContext';
 
 // --- Components ---
 
@@ -39,6 +40,7 @@ const Home: React.FC = () => {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1000], [0, 250]);
   const opacityIndicator = useTransform(scrollY, [0, 200], [1, 0]);
+  const { t } = useLanguage();
 
   // Materials Slider State
   const [materialIndex, setMaterialIndex] = useState(0);
@@ -57,7 +59,7 @@ const Home: React.FC = () => {
       <div className="fractured-accent top-[15%] left-[-5%] rotate-[-15deg]"></div>
       <div className="fractured-accent bottom-[10%] right-[-5%] rotate-[165deg]"></div>
 
-      {/* Cinematic Hero - Strict min-height and no compression */}
+      {/* Cinematic Hero */}
       <section className="relative w-full h-screen min-h-screen flex justify-center overflow-visible p-0 m-0">
         <motion.div style={{ y: y1 }} className="absolute inset-0 z-0 h-full w-full">
           <video
@@ -77,10 +79,8 @@ const Home: React.FC = () => {
           <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#ff8c00]/2 blur-[120px] animate-float"></div>
         </motion.div>
 
-        {/* Content wrapper - Using inline styles to bypass CSS conflicts */}
         <div className="app-container relative z-10 w-full" style={{ paddingTop: '100px' }}>
           <div className="text-center max-w-5xl mx-auto">
-            {/* Animated Logo Reveal */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -101,7 +101,7 @@ const Home: React.FC = () => {
               className="mb-12"
             >
               <span className="text-[10px] md:text-[11px] font-black tracking-[0.5em] text-[#ffce00] uppercase bg-white/5 px-6 py-2 rounded-full backdrop-blur-md border border-white/10 shadow-[0_0_30px_rgba(255,206,0,0.1)] inline-block">
-                ELITE ATHLETIC PERFORMANCE
+                {t('hero_badge')}
               </span>
             </motion.div>
 
@@ -111,8 +111,8 @@ const Home: React.FC = () => {
               transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="font-display italic hero-heading font-black tracking-tighter mb-8 text-white uppercase"
             >
-              FORGE YOUR <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#ffce00] to-[#ff8c00] glow-text">ULTIMATE FORM.</span>
+              {t('hero_title_1')} <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#ffce00] to-[#ff8c00] glow-text">{t('hero_title_2')}</span>
             </motion.h1>
 
             <motion.p
@@ -121,7 +121,7 @@ const Home: React.FC = () => {
               transition={{ delay: 0.8, duration: 1.2 }}
               className="text-gray-400 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed font-light"
             >
-              Step into the monarchy of high-performance discipline. Engineering the athletes of tomorrow through biomechanical excellence and data-driven protocols.
+              {t('hero_subtitle')}
             </motion.p>
 
             <motion.div
@@ -134,43 +134,41 @@ const Home: React.FC = () => {
                 to="/membership"
                 className="w-full sm:w-auto btn-premium group relative px-10 py-5 rounded-full overflow-hidden bg-[#ffce00] text-black font-black italic tracking-tighter text-lg hover:scale-105 hover:shadow-[0_0_50px_rgba(255,206,0,0.4)] active:scale-95 transition-all"
               >
-                <span className="relative z-10">INITIALIZE ACCESS</span>
+                <span className="relative z-10">{t('hero_cta_primary')}</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               </Link>
               <Link
                 to="/about"
                 className="w-full sm:w-auto btn-premium group px-10 py-5 rounded-full border border-white/20 text-white font-black italic tracking-tighter text-lg hover:border-[#ff8c00] hover:shadow-[0_0_30px_rgba(255,140,0,0.2)] active:scale-95 transition-all relative overflow-hidden"
               >
-                <span className="relative z-10">EXPLORE DNA</span>
+                <span className="relative z-10">{t('hero_cta_secondary')}</span>
                 <div className="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
               </Link>
             </motion.div>
 
-            {/* Scroll Indicator - repositioned mt-10 to sit closer to buttons as requested */}
             <motion.a
               href="#stats-section"
               style={{ opacity: opacityIndicator }}
               className="mt-10 inline-flex flex-col items-center cursor-pointer group transition-opacity duration-300"
             >
-              <p className="text-[10px] font-bold tracking-[0.4em] text-white/40 mb-4 uppercase group-hover:text-[#ffce00] transition-colors">DESCEND INTO EXCELLENCE</p>
+              <p className="text-[10px] font-bold tracking-[0.4em] text-white/40 mb-4 uppercase group-hover:text-[#ffce00] transition-colors">{t('hero_scroll')}</p>
               <div className="w-[1px] h-10 bg-gradient-to-b from-transparent via-[#ffce00] to-transparent animate-pulse group-hover:scale-y-110 transition-transform origin-top"></div>
             </motion.a>
           </div>
         </div>
       </section>
 
-      {/* Spacer to ensure no overlap - 100px vertical spacing */}
       <div className="h-[100px] w-full"></div>
 
-      {/* Stats - Next Section with ID for Scroll Anchor */}
+      {/* Stats */}
       <section id="stats-section" className="relative">
         <div className="app-container">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { label: 'Surface', val: 1600, suffix: ' M²', icon: 'fa-vector-square' },
-              { label: 'Elite Assets', val: 120, suffix: '+', icon: 'fa-dumbbell' },
-              { label: 'System Uptime', val: 24, suffix: '/7', icon: 'fa-bolt' },
-              { label: 'Active Titans', val: 3000, suffix: '+', icon: 'fa-users' },
+              { label: t('stat_surface'), val: 1600, suffix: ' M²', icon: 'fa-vector-square' },
+              { label: t('stat_equipment'), val: 120, suffix: '+', icon: 'fa-dumbbell' },
+              { label: t('stat_uptime'), val: 24, suffix: '/7', icon: 'fa-bolt' },
+              { label: t('stat_members'), val: 3000, suffix: '+', icon: 'fa-users' },
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -192,27 +190,25 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        {/* Brand Divider */}
         <div className="app-container mt-20">
           <div className="brand-divider"></div>
         </div>
       </section>
 
-      {/* Ecosystem Sectors (Classes) */}
+      {/* Training Programs */}
       <section className="bg-black/30 relative py-32">
-        {/* Subtle Soul Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-[#ffce00]/2 blur-[120px] pointer-events-none"></div>
 
         <div className="app-container relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-10">
             <div className="max-w-2xl">
-              <span className="text-[#ffce00] font-black tracking-widest text-[10px] mb-4 block uppercase">MISSION PARAMETERS</span>
+              <span className="text-[#ffce00] font-black tracking-widest text-[10px] mb-4 block uppercase">{t('home_services_badge')}</span>
               <h2 className="section-heading font-black italic leading-[0.9] uppercase text-white">
-                ELITE <br /> <span className="gold-gradient-text">PROTOCOLS</span>
+                {t('home_services_title_1')} <br /> <span className="gold-gradient-text">{t('home_services_title_2')}</span>
               </h2>
             </div>
             <p className="text-gray-400 text-lg font-light max-w-sm leading-relaxed">
-              Proprietary training zones engineered for maximum output, neural connectivity, and biological efficiency.
+              {t('home_services_desc')}
             </p>
           </div>
 
@@ -231,13 +227,13 @@ const Home: React.FC = () => {
                 <img src={service.image} alt={service.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale brightness-[0.5]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90"></div>
                 <div className="absolute bottom-0 left-0 p-8 lg:p-10 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="text-[#ffce00] text-[10px] font-black tracking-[0.3em] mb-4 block">PROTOCOL 0{idx + 1}</span>
+                  <span className="text-[#ffce00] text-[10px] font-black tracking-[0.3em] mb-4 block">{t('home_protocol_label')} 0{idx + 1}</span>
                   <h3 className="text-2xl lg:text-3xl font-black italic tracking-tighter mb-2 uppercase text-white">
                     {service.title} <br /> <span className="text-gray-500 text-lg">{service.subtitle}</span>
                   </h3>
                   <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">{service.description}</p>
                   <Link to="/services" className="inline-flex items-center space-x-3 text-[10px] font-black tracking-widest uppercase text-white hover:text-[#ffce00] transition-colors">
-                    <span>ACCESS PROTOCOL</span>
+                    <span>{t('home_service_link')}</span>
                     <i className="fas fa-arrow-right"></i>
                   </Link>
                 </div>
@@ -256,83 +252,69 @@ const Home: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent"></div>
               <div className="absolute bottom-10 left-10">
                 <div className="w-20 h-1 bg-[#ffce00] mb-6"></div>
-                <h3 className="text-3xl font-black italic text-white uppercase tracking-tighter">Titaness <br /> Sanctuary</h3>
+                <h3 className="text-3xl font-black italic text-white uppercase tracking-tighter">{t('women_title_1')} <br /> {t('women_title_2')}</h3>
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <span className="text-[#ffce00] font-black tracking-widest text-[10px] mb-4 block uppercase">Exclusive Zone</span>
+              <span className="text-[#ffce00] font-black tracking-widest text-[10px] mb-4 block uppercase">{t('women_badge')}</span>
               <h2 className="text-4xl lg:text-5xl font-black italic text-white uppercase tracking-tighter mb-8 leading-[0.9]">
-                Women-Only <br /><span className="text-gray-600">Sanctuary</span>
+                {t('women_title_1')} <br /><span className="text-gray-600">{t('women_title_2')}</span>
               </h2>
               <p className="text-gray-400 text-lg leading-relaxed mb-8 font-light">
-                A dedicated private safe space engineered exclusively for women. Featuring bespoke changing rooms, luxury amenities, and full workout access in a secure, high-performance environment.
+                {t('women_desc')}
               </p>
               <Link to="/services" className="px-8 py-4 border border-white/20 rounded-full text-white font-black italic uppercase tracking-wider text-sm hover:bg-white hover:text-black transition-all">
-                View Zone Details
+                {t('women_cta')}
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Extras / Perks Section */}
+      {/* Perks */}
       <section className="py-24 relative overflow-hidden">
         <div className="app-container">
           <div className="text-center mb-16">
-            <span className="text-[#ffce00] font-black tracking-widest text-[10px] mb-4 block uppercase">Base Amenities</span>
+            <span className="text-[#ffce00] font-black tracking-widest text-[10px] mb-4 block uppercase">{t('perks_badge')}</span>
             <h2 className="text-4xl lg:text-5xl font-black italic text-white uppercase tracking-tighter">
-              Facility <span className="text-gray-600">Perks</span>
+              {t('perks_title_1')} <span className="text-gray-600">{t('perks_title_2')}</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              {
-                title: 'Snack Bar / Nutrition',
-                desc: 'Homemade pre and post-workout nutrition options, designed for optimal biological recovery.',
-                icon: 'fa-utensils'
-              },
-              {
-                title: 'Library / Learning',
-                desc: 'A versatile learning space for reading, seminars, educational sessions, or deep-focus work.',
-                icon: 'fa-book'
-              },
-              {
-                title: 'Hygiene / Virus Safety',
-                desc: 'Rigorous equipment disinfection and COVID-19 safety measures to ensure total member protection.',
-                icon: 'fa-shield-virus'
-              }
+              { title: t('perk_snack_title'), desc: t('perk_snack_desc'), icon: 'fa-utensils' },
+              { title: t('perk_library_title'), desc: t('perk_library_desc'), icon: 'fa-book' },
+              { title: t('perk_hygiene_title'), desc: t('perk_hygiene_desc'), icon: 'fa-shield-virus' }
             ].map((perk, i) => (
               <div key={i} className="glass-card p-10 rounded-[2.5rem] border border-white/5 hover:border-[#ffce00]/30 transition-all group">
                 <div className="w-16 h-16 rounded-2xl bg-[#ffce00]/10 flex items-center justify-center text-[#ffce00] text-2xl mb-8 group-hover:bg-[#ffce00] group-hover:text-black transition-all duration-500">
                   <i className={`fas ${perk.icon}`}></i>
                 </div>
                 <h3 className="text-xl font-black italic text-white uppercase tracking-tighter mb-4">{perk.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed font-light">
-                  {perk.desc}
-                </p>
+                <p className="text-gray-400 text-sm leading-relaxed font-light">{perk.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Reputation & Comparison */}
+      {/* Comparison */}
       <section className="py-24 bg-[#0a0a0a]">
         <div className="app-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <span className="text-[#ffce00] font-black tracking-widest text-[10px] mb-4 block uppercase">Intel Report</span>
+              <span className="text-[#ffce00] font-black tracking-widest text-[10px] mb-4 block uppercase">{t('comp_badge')}</span>
               <h2 className="text-4xl lg:text-5xl font-black italic text-white uppercase tracking-tighter mb-10 leading-[0.9]">
-                The Gymland <br /><span className="text-gray-600">Standard</span>
+                {t('comp_title_1')} <br /><span className="text-gray-600">{t('comp_title_2')}</span>
               </h2>
 
               <div className="space-y-6">
                 {[
-                  { label: 'Spatial Density', bad: 'High Crowding', good: 'Multi-Zone Premium' },
-                  { label: 'Equipment Volume', bad: 'Limited Assets', good: 'Better Equipped' },
-                  { label: 'Environment', bad: 'Standard Layout', good: 'Multi-Zone Ecosystem' },
-                  { label: 'Coaching', bad: 'Basic Supervision', good: 'Elite Commanders' }
+                  { label: t('comp_space_label'), bad: t('comp_space_bad'), good: t('comp_space_good') },
+                  { label: t('comp_equip_label'), bad: t('comp_equip_bad'), good: t('comp_equip_good') },
+                  { label: t('comp_env_label'), bad: t('comp_env_bad'), good: t('comp_env_good') },
+                  { label: t('comp_coach_label'), bad: t('comp_coach_bad'), good: t('comp_coach_good') }
                 ].map((row, i) => (
                   <div key={i} className="grid grid-cols-2 gap-4 pb-6 border-b border-white/5">
                     <div>
@@ -340,7 +322,7 @@ const Home: React.FC = () => {
                       <p className="text-gray-500 text-sm font-medium line-through decoration-red-500/50">{row.bad}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-[#ffce00] uppercase tracking-widest mb-1">Gymland</p>
+                      <p className="text-[10px] font-bold text-[#ffce00] uppercase tracking-widest mb-1">{t('comp_gymland')}</p>
                       <p className="text-white text-sm font-bold uppercase">{row.good}</p>
                     </div>
                   </div>
@@ -356,23 +338,23 @@ const Home: React.FC = () => {
                     <div className="flex gap-1 text-black text-sm mb-1">
                       {[1, 2, 3, 4, 5].map(s => <i key={s} className="fas fa-star"></i>)}
                     </div>
-                    <p className="text-black font-bold uppercase tracking-widest text-xs">Based on Local Ratings</p>
+                    <p className="text-black font-bold uppercase tracking-widest text-xs">{t('comp_rating_source')}</p>
                   </div>
                 </div>
                 <blockquote className="text-2xl lg:text-3xl font-black italic leading-tight text-black uppercase mb-8">
-                  "Unrivaled atmosphere. The equipment is top-tier and the multi-zone layout changes the game."
+                  {t('comp_review_quote')}
                 </blockquote>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#ffce00]/20">
                     <img
                       src="/assets/review0.png"
-                      alt="Elite Member"
+                      alt={t('comp_reviewer')}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div>
-                    <p className="text-black font-bold uppercase text-sm">Elite Member</p>
-                    <p className="text-black/60 text-xs font-bold uppercase tracking-widest">Verified Review</p>
+                    <p className="text-black font-bold uppercase text-sm">{t('comp_reviewer')}</p>
+                    <p className="text-black/60 text-xs font-bold uppercase tracking-widest">{t('comp_review_badge')}</p>
                   </div>
                 </div>
               </div>
@@ -382,16 +364,16 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* New Materials Section - Highlight Yellow Branding */}
+      {/* Equipment */}
       <section className="bg-[#ffce00] py-32 relative overflow-hidden">
         <div className="app-container relative z-10">
           <div className="text-center mb-16">
-            <h4 className="font-display font-black text-black tracking-tighter text-sm mb-4">PREMIUM EQUIPMENT</h4>
+            <h4 className="font-display font-black text-black tracking-tighter text-sm mb-4">{t('equip_badge')}</h4>
             <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-black italic tracking-tighter leading-[0.9] uppercase">
-              FOR SUPERIOR SESSIONS
+              {t('equip_title')}
             </h2>
             <p className="mt-8 text-black/70 max-w-4xl mx-auto font-bold text-sm sm:text-base leading-relaxed uppercase">
-              To allow you to surpass yourself at every session, our club is equipped with the latest generation quality sports material and equipment across all spaces.
+              {t('equip_desc')}
             </p>
           </div>
 
@@ -448,15 +430,13 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        {/* Subtle Background Texture for Materials */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://thegymland.club/wp-content/uploads/Gunge-wall-noir2.jpg')] bg-cover mix-blend-overlay"></div>
       </section>
 
-      {/* Final CTA - Fixed structural alignment of START PROTOCOL button */}
+      {/* Final CTA */}
       <section className="relative">
         <div className="app-container">
           <div className="relative overflow-hidden rounded-[3rem] sm:rounded-[4rem] bg-[#0a0a0a] border border-white/5 p-12 sm:p-24 lg:p-32 text-center">
-            {/* Shadow Overlay Background */}
             <div className="absolute inset-0 rounded-[3rem] sm:rounded-[4rem] overflow-hidden">
               <ShadowOverlay
                 color="rgba(255, 206, 0, 0.4)"
@@ -466,23 +446,21 @@ const Home: React.FC = () => {
               />
             </div>
 
-            {/* Existing Background Elements */}
             <div className="absolute inset-0 opacity-10 bg-[url('https://thegymland.club/wp-content/uploads/Gunge-wall-noir2.jpg')] bg-cover mix-blend-overlay"></div>
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#ffce00]/5 blur-[120px] pointer-events-none"></div>
 
-            {/* Content */}
             <div className="relative z-10">
               <h2 className="section-heading font-black italic tracking-tighter leading-none mb-10 uppercase text-white">
-                JOIN THE <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#ffce00] to-[#ff8c00] glow-text">MONARCHY</span>
+                {t('cta_title_1')} <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#ffce00] to-[#ff8c00] glow-text">{t('cta_title_2')}</span>
               </h2>
               <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-                Your biological peak is not an accident—it's an engineering problem. Let's solve it together in the monarchy of discipline.
+                {t('cta_desc')}
               </p>
               <Link
                 to="/membership"
                 className="btn-premium inline-block bg-[#ffce00] text-black px-12 lg:px-16 py-5 lg:py-7 rounded-full font-black italic tracking-tighter text-xl lg:text-2xl hover:scale-105 hover:shadow-[0_0_80px_rgba(255,206,0,0.6)] active:scale-95 transition-all shadow-[0_0_60px_rgba(255,206,0,0.4)] relative group overflow-hidden"
               >
-                <span className="relative z-10">START PROTOCOL</span>
+                <span className="relative z-10">{t('cta_button')}</span>
                 <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none"></div>
               </Link>
             </div>

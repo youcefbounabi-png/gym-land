@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { NAV_ITEMS, LOGO_URL, LOGO_V2_URL } from '../constants';
+import { LOGO_URL } from '../constants';
+import { useLanguage } from '../LanguageContext';
+
+const NAV_KEYS = [
+  { key: 'nav_home', path: '/' },
+  { key: 'nav_about', path: '/about' },
+  { key: 'nav_services', path: '/services' },
+  { key: 'nav_membership', path: '/membership' },
+  { key: 'nav_trainers', path: '/trainers' },
+  { key: 'nav_transformations', path: '/transformations' },
+  { key: 'nav_contact', path: '/contact' },
+] as const;
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { lang, setLang, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,8 +29,6 @@ const Navbar: React.FC = () => {
   }, []);
 
   const handleLinkClick = (path: string) => {
-    // Logic to force viewport to top of target section (page top)
-    // Even if path is same, we trigger smooth scroll
     if (location.pathname === path) {
       window.scrollTo({
         top: 0,
@@ -48,7 +58,7 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Nav */}
         <ul className="hidden lg:flex items-center space-x-12">
-          {NAV_ITEMS.map((item) => (
+          {NAV_KEYS.map((item) => (
             <li key={item.path}>
               <Link
                 to={item.path}
@@ -56,7 +66,7 @@ const Navbar: React.FC = () => {
                 className={`text-[10px] font-black tracking-[0.3em] uppercase hover:text-[#ffce00] transition-all relative group ${location.pathname === item.path ? 'text-[#ffce00]' : 'text-white/60'
                   }`}
               >
-                {item.label}
+                {t(item.key)}
                 <span className={`absolute -bottom-2 left-1/2 -translate-x-1/2 h-1 bg-gradient-to-r from-[#ffce00] to-[#ff8c00] transition-all duration-500 rounded-full ${location.pathname === item.path ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-50'
                   }`}></span>
               </Link>
@@ -64,8 +74,16 @@ const Navbar: React.FC = () => {
           ))}
         </ul>
 
-        {/* CTA */}
-        <div className="hidden lg:block">
+        {/* CTA + Lang Toggle */}
+        <div className="hidden lg:flex items-center space-x-4">
+          {/* Language Toggle */}
+          <button
+            onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}
+            className="relative z-50 px-4 py-2 rounded-full text-[10px] font-black tracking-widest border border-white/20 text-white/60 hover:text-[#ffce00] hover:border-[#ffce00]/40 transition-all"
+          >
+            {lang === 'en' ? 'FR' : 'EN'}
+          </button>
+
           <Link
             to="/membership"
             onClick={() => handleLinkClick('/membership')}
@@ -73,21 +91,30 @@ const Navbar: React.FC = () => {
           >
             <div className="absolute inset-0 bg-[#ffce00] transition-transform group-hover:scale-110"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-            <span className="relative z-10">INITIALIZE ACCESS</span>
+            <span className="relative z-10">{t('nav_cta')}</span>
           </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          className="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center bg-white/10 rounded-full backdrop-blur-md border border-white/5"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <div className="space-y-1.5">
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-500 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-500 ${isMobileMenuOpen ? 'opacity-0 scale-x-0' : ''}`}></span>
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-500 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-          </div>
-        </button>
+        <div className="lg:hidden flex items-center space-x-3">
+          {/* Mobile Language Toggle */}
+          <button
+            onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}
+            className="relative z-50 w-10 h-10 flex items-center justify-center bg-white/10 rounded-full backdrop-blur-md border border-white/5 text-[10px] font-black text-white/70"
+          >
+            {lang === 'en' ? 'FR' : 'EN'}
+          </button>
+          <button
+            className="relative z-50 w-10 h-10 flex items-center justify-center bg-white/10 rounded-full backdrop-blur-md border border-white/5"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <div className="space-y-1.5">
+              <span className={`block w-5 h-0.5 bg-white transition-all duration-500 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+              <span className={`block w-5 h-0.5 bg-white transition-all duration-500 ${isMobileMenuOpen ? 'opacity-0 scale-x-0' : ''}`}></span>
+              <span className={`block w-5 h-0.5 bg-white transition-all duration-500 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+            </div>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}
@@ -106,14 +133,14 @@ const Navbar: React.FC = () => {
             </div>
 
             <div className="space-y-6 text-center relative z-10">
-              {NAV_ITEMS.map((item) => (
+              {NAV_KEYS.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => handleLinkClick(item.path)}
                   className="block text-4xl font-black italic tracking-tighter text-white hover:text-[#ffce00] transition-colors"
                 >
-                  {item.label}
+                  {t(item.key)}
                 </Link>
               ))}
               <Link
@@ -121,7 +148,7 @@ const Navbar: React.FC = () => {
                 onClick={() => handleLinkClick('/membership')}
                 className="inline-block mt-8 bg-[#ffce00] text-black px-10 py-4 rounded-full font-black text-xl italic tracking-tighter hover:scale-105 transition-transform"
               >
-                JOIN THE MONARCHY
+                {t('nav_mobile_cta')}
               </Link>
             </div>
 
