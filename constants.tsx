@@ -13,7 +13,7 @@ export const GRADIENTS = {
   brand: 'linear-gradient(135deg, #ffce00, #ff8c00)',
 };
 
-export const LOGO_URL = "https://thegymland.club/wp-content/uploads/the-gym-land-logo-full.png";
+export const LOGO_URL = "/assets/logo-v2.png";
 export const LOGO_V2_URL = "/assets/logo-v2.png";
 
 export const NAV_ITEMS: NavItem[] = [
