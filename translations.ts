@@ -209,7 +209,7 @@ export const translations = {
         contact_hours: 'Hours',
         contact_social: 'Social',
         contact_hours_val: 'Daily: 06:00 — 00:00\nFriday: 15:00 — 00:00',
-        contact_social_val: '@thegymland.club\nfacebook.com/gymland',
+        contact_social_val: '@thegymland_dz\nfacebook.com/The-Gymland',
 
         // Form
         form_name_label: 'Full Name',
@@ -457,7 +457,7 @@ export const translations = {
         contact_hours: 'Horaires',
         contact_social: 'Réseaux Sociaux',
         contact_hours_val: 'Tous les jours : 06h00 — 00h00\nVendredi : 15h00 — 00h00',
-        contact_social_val: '@thegymland.club\nfacebook.com/gymland',
+        contact_social_val: '@thegymland_dz\nfacebook.com/The-Gymland',
 
         // Form
         form_name_label: 'Nom Complet',

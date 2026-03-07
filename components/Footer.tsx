@@ -29,9 +29,9 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-5">
               {[
-                { icon: 'fab fa-facebook-f', href: '#' },
-                { icon: 'fab fa-instagram', href: '#' },
-                { icon: 'fab fa-youtube', href: '#' },
+                { icon: 'fab fa-facebook-f', href: 'https://www.facebook.com/p/The-Gymland-100028607843632/' },
+                { icon: 'fab fa-instagram', href: 'https://www.instagram.com/thegymland_dz/' },
+                { icon: 'fab fa-youtube', href: 'https://www.youtube.com/@gymland636' },
               ].map((social, i) => (
                 <a key={i} href={social.href} className="w-12 h-12 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-[#ffce00] hover:border-[#ffce00] hover:text-black transition-all duration-500">
                   <i className={social.icon}></i>

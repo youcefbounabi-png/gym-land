@@ -175,21 +175,21 @@ export const TRAINERS: Trainer[] = [
     name: 'Bilell Benmehiriz',
     specialty: 'Strategy and Mechanics',
     image: '/assets/trainers/bilell.png',
-    socials: { instagram: '#' }
+    socials: { instagram: 'https://www.instagram.com/thegymland_dz/' }
   },
   {
     id: '2',
     name: 'Vance 02',
     specialty: 'Metabolic Optimization',
     image: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&q=80&w=800',
-    socials: { instagram: '#' }
+    socials: { instagram: 'https://www.instagram.com/thegymland_dz/' }
   },
   {
     id: '3',
     name: 'Sato 03',
     specialty: 'Kinetic Mobility',
     image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&q=80&w=800',
-    socials: { instagram: '#' }
+    socials: { instagram: 'https://www.instagram.com/thegymland_dz/' }
   }
 ];
 
