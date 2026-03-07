@@ -60,7 +60,7 @@ const Home: React.FC = () => {
       <div className="fractured-accent bottom-[10%] right-[-5%] rotate-[165deg]"></div>
 
       {/* Cinematic Hero */}
-      <section className="relative w-full h-screen min-h-screen flex justify-center overflow-visible p-0 m-0">
+      <section className="relative w-full min-h-screen flex justify-center overflow-hidden p-0 m-0 pb-24">
         <motion.div style={{ y: y1 }} className="absolute inset-0 z-0 h-full w-full">
           <video
             autoPlay
@@ -158,7 +158,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <div className="h-[100px] w-full"></div>
+      <div className="h-[50px] w-full"></div>
 
       {/* Stats */}
       <section id="stats-section" className="relative">
