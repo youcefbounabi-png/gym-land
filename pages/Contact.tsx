@@ -25,16 +25,32 @@ const Contact: React.FC = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-16">
                 {[
-                  { label: 'Location', val: 'Cité 440 logts, Lots 12-23\nAin el Malha, 16029\nAlgiers, DZ' },
-                  { label: 'Communication', val: '+213 (0) 554 628 266\n+213 (0) 44 19 28 91\ncontact@thegymland.club' },
-                  { label: 'Hours', val: 'Daily: 06:00 — 00:00\nFriday: 15:00 — 00:00' },
-                  { label: 'Social', val: '@thegymland.club\nfacebook.com/gymland' },
+                  { label: 'Location', val: 'Cité 440 logts, Lots 12-23\nAin el Malha, 16029\nAlgiers, DZ', isLink: false },
+                  {
+                    label: 'Communication',
+                    val: (
+                      <span>
+                        <a href="https://wa.me/213554628266" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffce00] transition-colors block mb-1">
+                          +213 (0) 554 62 82 66 (WhatsApp)
+                        </a>
+                        <a href="tel:+21344192891" className="hover:text-[#ffce00] transition-colors block mb-1">
+                          +213 (0) 44 19 28 91
+                        </a>
+                        <a href="mailto:contact@thegymland.club" className="hover:text-[#ffce00] transition-colors block">
+                          contact@thegymland.club
+                        </a>
+                      </span>
+                    ),
+                    isLink: true
+                  },
+                  { label: 'Hours', val: 'Daily: 06:00 — 00:00\nFriday: 15:00 — 00:00', isLink: false },
+                  { label: 'Social', val: '@thegymland.club\nfacebook.com/gymland', isLink: false },
                 ].map((item, i) => (
                   <div key={i} className="space-y-4 group">
                     <h4 className="text-[10px] font-black tracking-[0.3em] uppercase text-[#ffce00] border-l-2 border-[#ffce00] pl-4">{item.label}</h4>
-                    <p className="text-gray-500 text-sm leading-relaxed whitespace-pre-line group-hover:text-white transition-colors duration-500 font-light">
+                    <div className="text-gray-500 text-sm leading-relaxed whitespace-pre-line group-hover:text-white transition-colors duration-500 font-light">
                       {item.val}
-                    </p>
+                    </div>
                   </div>
                 ))}
               </div>
