@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
         : 'bg-transparent py-4 md:py-8'
         }`}
     >
-      <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
+      <div className="container mx-auto px-5 md:px-8 flex items-center justify-between">
         <Link to="/" onClick={() => handleLinkClick('/')} className="relative z-50 flex items-center group">
           <img
             src={LOGO_URL}

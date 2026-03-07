@@ -18,9 +18,9 @@ const Footer: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-[#050505] pt-32 pb-12 border-t border-white/5">
+    <footer className="bg-[#050505] pt-16 md:pt-32 pb-12 border-t border-white/5">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16 mb-12 md:mb-24">
           {/* Brand */}
           <div className="space-y-8">
             <img src={LOGO_URL} alt="Gymland" className="h-14 md:h-20" />

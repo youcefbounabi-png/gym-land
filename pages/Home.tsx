@@ -60,7 +60,7 @@ const Home: React.FC = () => {
       <div className="fractured-accent bottom-[10%] right-[-5%] rotate-[165deg]"></div>
 
       {/* Cinematic Hero */}
-      <section className="relative w-full min-h-screen flex justify-center overflow-hidden p-0 m-0 pb-24">
+      <section className="relative w-full min-h-screen flex justify-center overflow-hidden p-0 m-0 pb-16 sm:pb-24">
         <motion.div style={{ y: y1 }} className="absolute inset-0 z-0 h-full w-full">
           <video
             autoPlay
@@ -79,18 +79,18 @@ const Home: React.FC = () => {
           <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#ff8c00]/2 blur-[120px] animate-float"></div>
         </motion.div>
 
-        <div className="app-container relative z-10 w-full" style={{ paddingTop: '100px' }}>
+        <div className="app-container relative z-10 w-full" style={{ paddingTop: '80px' }}>
           <div className="text-center max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="mb-10"
+              className="mb-6 sm:mb-10"
             >
               <img
                 src={LOGO_V2_URL}
                 alt="Gymland Arms Logo"
-                className="h-24 md:h-32 lg:h-40 mx-auto logo-glow brand-pulse"
+                className="h-16 sm:h-24 md:h-32 lg:h-40 mx-auto logo-glow brand-pulse"
               />
             </motion.div>
 
@@ -98,7 +98,7 @@ const Home: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3 }}
-              className="mb-12"
+              className="mb-6 sm:mb-12"
             >
               <span className="text-[10px] md:text-[11px] font-black tracking-[0.5em] text-[#ffce00] uppercase bg-white/5 px-6 py-2 rounded-full backdrop-blur-md border border-white/10 shadow-[0_0_30px_rgba(255,206,0,0.1)] inline-block">
                 {t('hero_badge')}
@@ -109,7 +109,7 @@ const Home: React.FC = () => {
               initial={{ opacity: 0, scale: 1 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display italic hero-heading font-black tracking-tighter mb-8 text-white uppercase"
+              className="font-display italic hero-heading font-black tracking-tighter mb-5 sm:mb-8 text-white uppercase"
             >
               {t('hero_title_1')} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#ffce00] to-[#ff8c00] glow-text">{t('hero_title_2')}</span>
@@ -119,7 +119,7 @@ const Home: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 1.2 }}
-              className="text-gray-400 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed font-light"
+              className="text-gray-400 text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed font-light"
             >
               {t('hero_subtitle')}
             </motion.p>
@@ -132,14 +132,14 @@ const Home: React.FC = () => {
             >
               <Link
                 to="/membership"
-                className="w-full sm:w-auto btn-premium group relative px-10 py-5 rounded-full overflow-hidden bg-[#ffce00] text-black font-black italic tracking-tighter text-lg hover:scale-105 hover:shadow-[0_0_50px_rgba(255,206,0,0.4)] active:scale-95 transition-all"
+                className="w-full sm:w-auto btn-premium group relative px-8 sm:px-10 py-4 sm:py-5 rounded-full overflow-hidden bg-[#ffce00] text-black font-black italic tracking-tighter text-base sm:text-lg hover:scale-105 hover:shadow-[0_0_50px_rgba(255,206,0,0.4)] active:scale-95 transition-all"
               >
                 <span className="relative z-10">{t('hero_cta_primary')}</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               </Link>
               <Link
                 to="/about"
-                className="w-full sm:w-auto btn-premium group px-10 py-5 rounded-full border border-white/20 text-white font-black italic tracking-tighter text-lg hover:border-[#ff8c00] hover:shadow-[0_0_30px_rgba(255,140,0,0.2)] active:scale-95 transition-all relative overflow-hidden"
+                className="w-full sm:w-auto btn-premium group px-8 sm:px-10 py-4 sm:py-5 rounded-full border border-white/20 text-white font-black italic tracking-tighter text-base sm:text-lg hover:border-[#ff8c00] hover:shadow-[0_0_30px_rgba(255,140,0,0.2)] active:scale-95 transition-all relative overflow-hidden"
               >
                 <span className="relative z-10">{t('hero_cta_secondary')}</span>
                 <div className="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
@@ -149,7 +149,7 @@ const Home: React.FC = () => {
             <motion.a
               href="#stats-section"
               style={{ opacity: opacityIndicator }}
-              className="mt-10 inline-flex flex-col items-center cursor-pointer group transition-opacity duration-300"
+              className="mt-6 sm:mt-10 inline-flex flex-col items-center cursor-pointer group transition-opacity duration-300"
             >
               <p className="text-[10px] font-bold tracking-[0.4em] text-white/40 mb-4 uppercase group-hover:text-[#ffce00] transition-colors">{t('hero_scroll')}</p>
               <div className="w-[1px] h-10 bg-gradient-to-b from-transparent via-[#ffce00] to-transparent animate-pulse group-hover:scale-y-110 transition-transform origin-top"></div>
