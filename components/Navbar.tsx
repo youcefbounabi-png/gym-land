@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
           <img
             src={LOGO_URL}
             alt="Gymland Logo"
-            className={`transition-all duration-500 object-contain logo-glow ${isScrolled ? 'h-8 md:h-12' : 'h-10 md:h-16 lg:h-20'}`}
+            className={`transition-all duration-500 object-contain logo-glow pl-1 sm:pl-0 ${isScrolled ? 'h-8 md:h-12' : 'h-10 md:h-16 lg:h-20'}`}
           />
           <div className="absolute -inset-6 bg-gradient-to-r from-[#ffce00]/20 via-[#ff8c00]/20 to-[#ffce00]/20 opacity-0 group-hover:opacity-100 transition-opacity blur-3xl duration-500"></div>
         </Link>
